@@ -1,4 +1,4 @@
-import { useContract, useContractWrite, useContractRead } from 'wagmi';
+import { useReadContract, useWriteContract } from 'wagmi';
 import { useState } from 'react';
 
 // Contract ABI - this would be generated from the compiled contract
@@ -81,36 +81,44 @@ const CONTRACT_ABI = [
 const CONTRACT_ADDRESS = process.env.VITE_CONTRACT_ADDRESS || "0x0000000000000000000000000000000000000000";
 
 export const useSecretCreditFlow = () => {
-  const { data: contract } = useContract({
+  return {
     address: CONTRACT_ADDRESS as `0x${string}`,
     abi: CONTRACT_ABI,
-  });
-
-  return contract;
+  };
 };
 
 export const useCreateCreditProfile = () => {
-  const { write, isLoading, error } = useContractWrite({
-    address: CONTRACT_ADDRESS as `0x${string}`,
-    abi: CONTRACT_ABI,
-    functionName: 'createCreditProfile',
-  });
+  const { writeContract, isPending, error } = useWriteContract();
 
-  return { createProfile: write, isLoading, error };
+  const createProfile = async (args: any[]) => {
+    return writeContract({
+      address: CONTRACT_ADDRESS as `0x${string}`,
+      abi: CONTRACT_ABI,
+      functionName: 'createCreditProfile',
+      args,
+    });
+  };
+
+  return { createProfile, isLoading: isPending, error };
 };
 
 export const useSubmitLoanApplication = () => {
-  const { write, isLoading, error } = useContractWrite({
-    address: CONTRACT_ADDRESS as `0x${string}`,
-    abi: CONTRACT_ABI,
-    functionName: 'submitLoanApplication',
-  });
+  const { writeContract, isPending, error } = useWriteContract();
 
-  return { submitApplication: write, isLoading, error };
+  const submitApplication = async (args: any[]) => {
+    return writeContract({
+      address: CONTRACT_ADDRESS as `0x${string}`,
+      abi: CONTRACT_ABI,
+      functionName: 'submitLoanApplication',
+      args,
+    });
+  };
+
+  return { submitApplication, isLoading: isPending, error };
 };
 
 export const useGetCreditProfile = (profileId: number) => {
-  const { data, isLoading, error } = useContractRead({
+  const { data, isLoading, error } = useReadContract({
     address: CONTRACT_ADDRESS as `0x${string}`,
     abi: CONTRACT_ABI,
     functionName: 'getCreditProfileInfo',
@@ -121,7 +129,7 @@ export const useGetCreditProfile = (profileId: number) => {
 };
 
 export const useGetLoanInfo = (loanId: number) => {
-  const { data, isLoading, error } = useContractRead({
+  const { data, isLoading, error } = useReadContract({
     address: CONTRACT_ADDRESS as `0x${string}`,
     abi: CONTRACT_ABI,
     functionName: 'getLoanInfo',
