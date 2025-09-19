@@ -1,0 +1,242 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* DeFi Credit Scoring Design System - Fintech meets Web3 Privacy */
+
+@layer base {
+  :root {
+    /* Base colors - Deep tech aesthetic */
+    --background: 222 47% 4%;
+    --foreground: 210 40% 98%;
+
+    /* Card system - Glassmorphism with subtle borders */
+    --card: 222 47% 6%;
+    --card-foreground: 210 40% 98%;
+
+    /* Interactive elements */
+    --popover: 222 47% 6%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Primary - Electric blue for encryption theme */
+    --primary: 199 89% 48%;
+    --primary-foreground: 222 47% 4%;
+
+    /* Secondary - Softer blue-gray */
+    --secondary: 215 28% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    /* Muted elements */
+    --muted: 215 28% 17%;
+    --muted-foreground: 217 10% 64%;
+
+    /* Accent - Gold for credit scores */
+    --accent: 45 93% 58%;
+    --accent-foreground: 222 47% 4%;
+
+    /* Status colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --success: 142 76% 36%;
+    --warning: 38 92% 50%;
+
+    /* Interactive elements */
+    --border: 215 28% 17%;
+    --input: 215 28% 17%;
+    --ring: 199 89% 48%;
+
+    /* Design tokens */
+    --radius: 0.75rem;
+
+    /* Encryption glow effects */
+    --glow-primary: 199 89% 48%;
+    --glow-accent: 45 93% 58%;
+    --glow-success: 142 76% 36%;
+
+    /* Gradients for encrypted elements */
+    --gradient-primary: linear-gradient(135deg, hsl(199 89% 48% / 0.2), hsl(199 89% 48% / 0.05));
+    --gradient-accent: linear-gradient(135deg, hsl(45 93% 58% / 0.2), hsl(45 93% 58% / 0.05));
+    --gradient-encrypted: linear-gradient(135deg, hsl(199 89% 48% / 0.1), hsl(263 70% 50% / 0.1));
+
+    /* Shadows with glow */
+    --shadow-glow: 0 0 20px hsl(var(--glow-primary) / 0.3);
+    --shadow-accent-glow: 0 0 20px hsl(var(--glow-accent) / 0.3);
+    --shadow-card: 0 8px 32px hsl(222 47% 4% / 0.3);
+
+    /* Animation durations */
+    --transition-base: 0.2s ease-out;
+    --transition-glow: 0.3s ease-in-out;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Encrypted scorecard with glow effect */
+  .encrypted-card {
+    @apply relative overflow-hidden rounded-lg border border-border/50 bg-card/80 backdrop-blur-sm;
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-card);
+    transition: all var(--transition-glow);
+  }
+
+  .encrypted-card:hover {
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+  }
+
+  /* Glowing elements */
+  .glow-primary {
+    box-shadow: 0 0 20px hsl(var(--glow-primary) / 0.4);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px hsl(var(--glow-accent) / 0.4);
+  }
+
+  /* Credit meter animations */
+  .credit-meter {
+    @apply relative overflow-hidden rounded-full bg-secondary;
+    height: 8px;
+  }
+
+  .credit-meter::after {
+    content: '';
+    @apply absolute inset-0 rounded-full;
+    background: linear-gradient(90deg, hsl(var(--accent)), hsl(var(--primary)));
+    transform: translateX(-100%);
+    animation: fillMeter 2s ease-out forwards;
+  }
+
+  /* Encrypted text effect */
+  .encrypted-text {
+    @apply font-mono tracking-wider;
+    text-shadow: 0 0 10px hsl(var(--glow-primary) / 0.5);
+    animation: encryptedGlow 2s ease-in-out infinite alternate;
+  }
+
+  /* Wallet connection button */
+  .wallet-connect {
+    @apply relative overflow-hidden rounded-lg bg-primary text-primary-foreground font-semibold px-6 py-3;
+    box-shadow: var(--shadow-glow);
+    transition: all var(--transition-base);
+  }
+
+  .wallet-connect:hover {
+    box-shadow: var(--shadow-glow), 0 0 30px hsl(var(--glow-primary) / 0.6);
+    transform: translateY(-1px);
+  }
+
+  /* Logo with glow */
+  .logo-glow {
+    filter: drop-shadow(0 0 8px hsl(var(--glow-primary) / 0.6));
+  }
+}
+
+@layer utilities {
+  .text-gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-accent {
+    background: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--primary)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .border-glow {
+    border: 1px solid hsl(var(--primary) / 0.3);
+    box-shadow: inset 0 0 20px hsl(var(--primary) / 0.1);
+  }
+}
+
+/* Keyframes for animations */
+@keyframes fillMeter {
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes encryptedGlow {
+  from {
+    text-shadow: 0 0 5px hsl(var(--glow-primary) / 0.3);
+  }
+  to {
+    text-shadow: 0 0 15px hsl(var(--glow-primary) / 0.8);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px hsl(var(--glow-primary) / 0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px hsl(var(--glow-primary) / 0.8);
+  }
+}
