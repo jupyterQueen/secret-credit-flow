@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, Zap, Shield } from "lucide-react";
+import { ArrowRight, Zap, TrendingUp } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import LoanApplicationFlow from "@/components/LoanApplicationFlow";
@@ -49,7 +49,7 @@ const LoanCard = ({ title, apr, maxAmount, collateralRatio, benefits, featured =
 
         <div className="space-y-2">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Shield className="w-4 h-4 text-primary" />
+            <Zap className="w-4 h-4 text-primary" />
             Privacy Features
           </div>
           <ul className="space-y-1">

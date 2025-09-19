@@ -1,4 +1,4 @@
-import { Shield, Eye, EyeOff } from "lucide-react";
+import { Zap, Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -31,7 +31,7 @@ const EncryptedScorecard = ({ title, encryptedValue, decryptedValue, scoreType }
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg flex items-center gap-2">
-            <Shield className="w-5 h-5 text-primary" />
+            <Zap className="w-5 h-5 text-primary" />
             {title}
           </CardTitle>
           <Button
